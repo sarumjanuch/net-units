@@ -123,7 +123,7 @@ TimeDelta.add(a, b)           // compiles to: a + b
 DataSize.per(size, duration)  // compiles to: size * 8000 / duration
 ```
 
-Class-based wrappers were benchmarked during design and ran 3-10× slower because of allocation. Branded types carry the same safety guarantees without that cost.
+Class-based wrappers were benchmarked during design and ran 2-6× slower because of allocation. Branded types carry the same safety guarantees without that cost.
 
 ### Non-negative types and their Deltas
 
