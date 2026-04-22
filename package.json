@@ -1,0 +1,60 @@
+{
+  "name": "net-units",
+  "version": "1.0.0",
+  "description": "Typed units for time, data size, and throughput — branded, zero-cost, dimensionally-safe primitives for streaming, I/O, rate estimation, and scheduling.",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -rf dist dist-test",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:stubs": "echo '{\"type\":\"module\"}' > dist/esm/package.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run build:stubs",
+    "build:test": "tsc -p tsconfig.test.json && echo '{\"type\":\"commonjs\"}' > dist-test/package.json",
+    "test": "npm run build:test && node --test \"dist-test/test/*.test.js\"",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.test.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "units",
+    "typescript",
+    "branded-types",
+    "timestamp",
+    "duration",
+    "bytes",
+    "bitrate",
+    "throughput",
+    "clock"
+  ],
+  "author": "Eugene Voityuk <sarumjanuch@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarumjanuch/net-units.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sarumjanuch/net-units/issues"
+  },
+  "homepage": "https://github.com/sarumjanuch/net-units#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.6.0"
+  }
+}
